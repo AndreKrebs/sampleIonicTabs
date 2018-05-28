@@ -13,6 +13,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { FeedPageModule } from '../pages/feed/feed.module';
 import { IntroPageModule } from '../pages/intro/intro.module';
 
+// modulos add
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http'; // precisa adicionar o httpModule para que seja possivel atualizar a tela depois de receber os dados do servidor
+import { MovieProvider } from '../providers/movie/movie';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -25,7 +30,9 @@ import { IntroPageModule } from '../pages/intro/intro.module';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     FeedPageModule,
-    IntroPageModule
+    IntroPageModule,
+    HttpClientModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,7 +45,8 @@ import { IntroPageModule } from '../pages/intro/intro.module';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MovieProvider
   ]
 })
 export class AppModule {}
