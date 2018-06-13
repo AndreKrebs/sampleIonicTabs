@@ -17,6 +17,10 @@ import { IntroPageModule } from '../pages/intro/intro.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http'; // precisa adicionar o httpModule para que seja possivel atualizar a tela depois de receber os dados do servidor
 import { MovieProvider } from '../providers/movie/movie';
+import { ConfigurationPageModule } from '../pages/configuration/configuration.module';
+import { UserProfilePageModule } from '../pages/user-profile/user-profile.module';
+import { AboutAppPageModule } from '../pages/about-app/about-app.module';
+import { MenuConfigPageModule } from '../pages/menu-config/menu-config.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { MovieProvider } from '../providers/movie/movie';
     FeedPageModule,
     IntroPageModule,
     HttpClientModule,
+    ConfigurationPageModule,
+    UserProfilePageModule,
+    AboutAppPageModule, 
+    MenuConfigPageModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
