@@ -14,6 +14,12 @@
 
 
 <ion-content padding>
+
+    
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <h2>Feed de notícias</h2>
   <ion-card *ngFor="let filme of listaFilmes">
 

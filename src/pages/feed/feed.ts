@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { MovieProvider } from '../../providers/movie/movie';
 
 /**
@@ -23,24 +23,58 @@ export class FeedPage {
 
   public listaFilmes = new Array<any>();
 
+  private loader;
+  private refresher;
+  private isRefresh = false;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private movieProvider: MovieProvider) {
+    private movieProvider: MovieProvider,
+    public loadingCtrl: LoadingController) {
   }
 
-  ionViewDidLoad() {
+  doRefresh(refresher) {
+    this.refresher = refresher;
+    this.isRefresh = true;
+    this.getDataFilms();
+
+  }
+
+  ionViewDidEnter() {
+    this.getDataFilms();  
+  }
+
+  getDataFilms() {
+    this.initLoading();
     this.movieProvider.getPopularMovies().subscribe(
       data=>{
-        // por ser um objeto informo que data é do tipo any e faço um parse do json
         const response = (data as any);
         this.listaFilmes = response.results;
 
-        console.log('DATA:', this.listaFilmes);
+        this.endLoading();
       }, error=>{
         console.log('ERROR:', error);
+        this.endLoading();
       }
     );
+  }
+
+  initLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando..."
+    });
+    this.loader.present();
+  }
+
+  endLoading() {
+    // valida se é refresh
+    if(this.isRefresh==true) {
+      this.refresher.complete();
+      this.isRefresh = false;
+    }
+
+    this.loader.dismiss();
   }
 
 }

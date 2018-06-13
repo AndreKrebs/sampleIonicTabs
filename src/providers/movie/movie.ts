@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MovieProvider {
 
-  private key:string = "?api_key=AAAAAAAAAAAAAAAAAAAAAAA"; //Adicionar a key do site https://www.themoviedb.org
+  private key:string = "?api_key=AAAAAAAAAAAAAAAAAAAa"; //Adicionar a key do site https://www.themoviedb.org
   private httpAccess:string = "https://api.themoviedb.org/3";
 
   constructor(public http: HttpClient) {
